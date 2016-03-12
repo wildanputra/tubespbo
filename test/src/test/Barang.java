@@ -122,6 +122,7 @@ public class Barang {
         for(int j=0;j<=jumlahBuku;j++) {
             if(booklist[j].getKode() == i){
                 booklist[j]=null;
+                System.out.println("Buku berhasil dihapus");
             }
             else{
                 System.out.println("Buku tidak ditemukan");
