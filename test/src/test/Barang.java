@@ -12,11 +12,20 @@ package test;
 public class Barang {
     private String judul;
     private String penerbit;
+    private String deskripsi;
     private String kondisi;
     private String status;
     private long kode;
     private int jumlahBuku = 0;
     private Barang[] booklist;
+
+    public String getDeskripsi() {
+        return deskripsi;
+    }
+
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
+    }
 
     public String getPenerbit() {
         return penerbit;

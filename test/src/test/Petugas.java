@@ -12,9 +12,18 @@ package test;
 public class Petugas {
     private String username;
     private String password;
+    private String nip;
     private int jumlahPetugas;
     private Petugas[] p;
 
+    public String getNIP() {
+        return NIP;
+    }
+
+    public void setNIP(String NIP) {
+        this.NIP = NIP;
+    }
+    
     public String getUsername() {
         return username;
     }
