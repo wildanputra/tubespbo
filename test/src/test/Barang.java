@@ -81,17 +81,16 @@ public class Barang {
     }
     
     public void getBookIdx(int i){
-        for(int j=0;j<=jumlahBuku;j++) {
-            if(booklist[j]!=null){
-                System.out.println("judul : "+booklist[j].getJudul());
-                System.out.println("kondisi : "+booklist[j].getKondisi());
-                System.out.println("Status : "+booklist[j].getKondisi());
+        //for(int j=0;j<=jumlahBuku;j++) {
+            if(booklist[i]!=null){
+                System.out.println("judul : "+booklist[i].getJudul());
+                System.out.println("kondisi : "+booklist[i].getKondisi());
+                System.out.println("Status : "+booklist[i].getKondisi());
             }
             else {
                 System.out.println("Buku tidak ditemukan");
             }
         } 
-    }
     
     public void getBookKode(long i){
         for(int j=0;j<=jumlahBuku;j++) {
@@ -106,27 +105,32 @@ public class Barang {
         } 
     }   
     
-    public void removeBookIdx(int i){//remove by index
-        for(int j=0;j<=jumlahBuku;j++) {
+    public void removeBookIdx(int j){//remove by index
+        //for(int j=0;j<=jumlahBuku;j++) {
             if(booklist[j]!=null){
-                booklist[j]=null;
+                do{
+                booklist[j]=booklist[j+1];
+                j++;
+                }while(j!=booklist.length);
                 System.out.println("Buku berhasil dihapus");
             }
             else {
                 System.out.println("Buku tidak ditemukan");
             }
         }
-    }
     
     public void removeBookKode(long i){//remove book by kode
         for(int j=0;j<=jumlahBuku;j++) {
             if(booklist[j].getKode() == i){
-                booklist[j]=null;
+                do{
+                booklist[j]=booklist[j+1];
+                j++;
+                }while(j!=booklist.length);
                 System.out.println("Buku berhasil dihapus");
             }
             else{
                 System.out.println("Buku tidak ditemukan");
             }
         }
-    }       
+    }
 }

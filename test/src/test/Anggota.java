@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package test;
 
 /**
@@ -10,7 +5,7 @@ package test;
  * @author wildanputra
  */
 public class Anggota {
-    //private Peminjaman[] peminjaman;
+    private Peminjaman[] peminjaman;
     private String username;
     private String password;
     private int jumlahAnggota;
