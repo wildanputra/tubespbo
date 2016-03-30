@@ -151,5 +151,15 @@ public class Barang {
                 System.out.println("Buku tidak ditemukan");
             }
         }
-    }       
+    }
+    
+    public String toString(){
+        String x = "Judul = " + this.getJudul() +
+                   "\nPenerbit = " + this.getPenerbit() +
+                   "\nKondisi = " + this.getKondisi() +
+                   "\nStatus = " + this.getStatus() +
+                   "\nKode = " + this.getKode();
+               
+        return x;
+    }
 }

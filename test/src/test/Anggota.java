@@ -76,5 +76,13 @@ public class Anggota extends Orang {
         this.anggota = anggota;
     }
     
+    public String toString(){
+        String x = "Username = " + this.getUsername() +
+                   "\nPassword = " + this.getPassword() +
+                   "\nJumlah Anggota = " + this.getJumlahAnggota() +
+                   "\nAnggota = " + this.getAnggota();
+               
+        return x;
+    }  
     
 }

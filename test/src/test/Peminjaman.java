@@ -60,6 +60,15 @@ public class Peminjaman {
         this.statusPeminjaman=statusPeminjaman;
         this.jumlahPeminjaman=jumlahPeminjaman;
     }
+    
+    public String toString(){
+        String x = "Status Peminjaman = " + this.getstatusPeminjaman() +
+                   "\nID Peminjam = " + this.getidPeminjam() +
+                   "\nJumlah Peminjaman = " + this.getjumlahPeminjaman() +
+                   "\nStatus = " + this.getstatusPeminjaman();
+               
+        return x;
+    }
 
     Peminjaman pinjam = new Peminjaman(12345, brg, 1);
     
