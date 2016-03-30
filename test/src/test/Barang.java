@@ -19,6 +19,14 @@ public class Barang {
         return judul;
     }
 
+    public Barang[] getBooklist() {
+        return booklist;
+    }
+
+    public void setBooklist(Barang[] booklist) {
+        this.booklist = booklist;
+    }
+
     public void setJudul(String judul) {
         this.judul = judul;
     }
@@ -82,8 +90,9 @@ public class Barang {
     public void setJumlahBuku(int jumlahBuku) {
         this.jumlahBuku = jumlahBuku;
     }
-
-    public Barang(String judul,String penerbit, String deskripsi, String kondisi, String status,long kode){
+    
+    public Barang(){}
+    public Barang(String judul,String penerbit, String kondisi, String status,long kode){
         this.judul = judul;
         this.kondisi=kondisi;
         this.status=status;
@@ -92,9 +101,9 @@ public class Barang {
         this.deskripsi = deskripsi;
     } 
     
-    public void setbooklist(int n){ //menentukan jumlah buku dalam array
-        booklist = new Barang[n];
-    } 
+    
+    
+   
     
     public void addBook(Barang b){
         if (jumlahBuku<booklist.length){

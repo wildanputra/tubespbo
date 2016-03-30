@@ -11,16 +11,33 @@ package test;
  */
 public class Petugas extends Orang{
     private String username;
+
     private String password;
     private String nip;
     private int jumlahPetugas;
     private String nama;
     private String kelamin;
     private String alamat;
-    private Petugas[] p;
+    private Petugas[] daftarPetugas;
+    boolean c; // check
+    int d;
     
-    public Petugas(String username, String Password, String nip, String nama, String alamat, String kelamin){
-        
+    public Petugas(){};
+    public Petugas(String username, String password, String nip, String nama, String alamat, String kelamin){
+        this.nama=nama;
+        this.alamat=alamat;
+        this.kelamin=kelamin;
+        this.nip=nip;
+        this.password=password;
+        this.username=username;
+    }
+    
+    public Petugas[] getDaftarPetugas() {
+        return daftarPetugas;
+    }
+
+    public void setDaftarPetugas(Petugas[] daftarPetugas) {
+        this.daftarPetugas = daftarPetugas;
     }
     
     public String getUsername() {
@@ -87,6 +104,33 @@ public class Petugas extends Orang{
     @Override
     public void setAlamat(String alamat) {
         this.alamat = alamat;
+    }
+    
+    public void addPetugas(Petugas p){
+        if (getJumlahPetugas()<daftarPetugas.length){
+            daftarPetugas[getJumlahPetugas()] = p;
+            setJumlahPetugas(getJumlahPetugas()+1);
+        }
+        else System.out.println("Petugas sudah mencapai batas maksimal");       
+    }
+    
+    public void getPetugas(String username){
+        for(int j=0; j<=getJumlahPetugas();j++){
+            if(daftarPetugas[j]!=null){
+                if(daftarPetugas[j].getUsername()==username){
+                    c = true;
+                    d=j;
+                }
+                else { 
+                    System.out.println("Petugas tidak ditemukan");
+                    c = false;
+                }
+            }
+            else {
+                System.out.println("Daftar Petugas Kosong");
+                c = false;
+            }
+        }
     }
     
 }

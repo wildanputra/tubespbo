@@ -15,22 +15,30 @@ public class AplikasiPerpus {
     private Scanner s;
     private Barang barang;
     private Anggota anggota;
-    //private Peminjaman peminjaman;
     private Petugas petugas;
-    private Barang[] daftarBarang;
-    private Anggota[] daftarAnggota;
-    //private Peminjaman[] daftarPeminjaman;
-    private Petugas[] daftarPetugas;
     
     public AplikasiPerpus(){
         this.barang = new Barang();
         this.anggota= new Anggota();
-        //this.peminjaman = new Peminjaman();
         this.petugas = new Petugas();
-        this.daftarBarang = new Barang[20];
-        this.daftarAnggota = new Anggota[200];
-        this.daftarPetugas = new Petugas[50];
-        Petugas p1 = new Petugas();
+        Petugas p1 = new Petugas("okaaryanata", "okaaryanata", "1301140220", "okaaryanata", "bali", "laki-laki");
+        Petugas p2 = new Petugas("wildanputra", "wildanputra", "1301140210", "wildanputra", "bandung", "laki-laki");
+        Petugas p3 = new Petugas("ariananggada", "ariananggada", "1301140400", "ariananggada", "bali", "laki-laki");
+        Barang b1 = new Barang("PBO", "robert", "Hilang satu halaman", "tersedia", 121);
+        Barang b2 = new Barang("COA", "minus", "Hilang dua halaman", "tersedia", 122);
+        Barang b3 = new Barang("RPL", "marcel", "Hilang satu halaman", "tersedia", 123);
+        this.barang.setBooklist(new Barang[200]);
+        this.anggota.setDaftarAnggota(new Anggota[200]);
+        this.petugas.setDaftarPetugas(new Petugas[50]);
+        this.barang.addBook(b1);
+        this.barang.addBook(b2);
+        this.barang.addBook(b3);
+        this.petugas.addPetugas(p1);
+        this.petugas.addPetugas(p2);
+        this.petugas.addPetugas(p3);
+    }
+    
+    public void menuAwal(){
         
     }
 }
