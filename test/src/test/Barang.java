@@ -19,12 +19,16 @@ public class Barang {
     private int jumlahBuku = 0;
     private Barang[] booklist;
 
-    Barang() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public String getJudul() {
         return judul;
+    }
+
+    public Barang[] getBooklist() {
+        return booklist;
+    }
+
+    public void setBooklist(Barang[] booklist) {
+        this.booklist = booklist;
     }
 
     public void setJudul(String judul) {
@@ -78,7 +82,8 @@ public class Barang {
     public void setJumlahBuku(int jumlahBuku) {
         this.jumlahBuku = jumlahBuku;
     }
-
+    
+    public Barang(){}
     public Barang(String judul,String penerbit, String kondisi, String status,long kode){
         this.judul = judul;
         this.kondisi=kondisi;
@@ -87,9 +92,9 @@ public class Barang {
         this.penerbit= penerbit;
     } 
     
-    public void setbooklist(int n){ //menentukan jumlah buku dalam array
-        booklist = new Barang[n];
-    } 
+    
+    
+   
     
     public void addBook(Barang b){
         if (jumlahBuku<booklist.length){

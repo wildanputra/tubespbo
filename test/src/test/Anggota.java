@@ -12,6 +12,9 @@ public class Anggota extends Orang {
     private String nama;
     private String kelamin;
     private String alamat;
+    private Anggota[] daftarAnggota;
+    boolean c; // check
+    int d;
 
     @Override
     public String getNama() {
@@ -75,6 +78,48 @@ public class Anggota extends Orang {
     public void setAnggota(Anggota[] anggota) {
         this.anggota = anggota;
     }
+
+    public Anggota[] getDaftarAnggota() {
+        return daftarAnggota;
+    }
+
+    public void setDaftarAnggota(Anggota[] daftarAnggota) {
+        this.daftarAnggota = daftarAnggota;
+    }
+        
+    public void addAnggota(Anggota a){
+        if (getJumlahAnggota()<daftarAnggota.length){
+            daftarAnggota[getJumlahAnggota()] = a;
+            setJumlahAnggota(getJumlahAnggota()+1);
+        }
+        else System.out.println("Anggota sudah penuh");
+    }
     
+    public void getAnggota(String username){
+        for(int j=0; j<=getJumlahAnggota();j++){
+            if(daftarAnggota[j]!=null){
+                if(daftarAnggota[j].getUsername()==username){
+                    c = true;
+                    d=j;
+                }
+                else { 
+                    System.out.println("Anggota tidak ditemukan");
+                    c = false;
+                }
+            }
+            else {
+                System.out.println("Daftar Anggota Kosong");
+                c = false;
+            }
+        }
+    }
     
+    public void deleteAnggota(String username){
+        if (c ==true){
+            do{
+            daftarAnggota[d] = daftarAnggota[d+1];
+            d++;
+            }while(d!=daftarAnggota.length);
+        }
+    }
 }
