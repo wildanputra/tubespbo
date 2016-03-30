@@ -16,6 +16,10 @@ public class Peminjaman {
     public Barang brg;
     private String statusPeminjaman;
     private int jumlahPeminjaman = 0;
+
+    Peminjaman() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public Peminjaman getPlist(int i) {
        return Plist[i];

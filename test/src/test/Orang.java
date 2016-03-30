@@ -12,11 +12,25 @@ package test;
 public class Orang {
     private String nama;
     private String kelamin;
+    private String alamat;
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+    
 
     public String getNama() {
         return nama;
     }
 
+    /**
+     *
+     * @param nama
+     */
     public void setNama(String nama) {
         this.nama = nama;
     }
