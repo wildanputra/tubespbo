@@ -41,4 +41,8 @@ public class AplikasiPerpus {
     public void menuAwal(){
         
     }
+    
+    public void mainMenu(){
+        
+    }
 }
