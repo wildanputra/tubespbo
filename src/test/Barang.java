@@ -10,11 +10,7 @@ package test;
  * @author wildanputra
  */
 public class Barang {
-    private String judul;
-    private String penerbit;
-    private String deskripsi;
-    private String kondisi;
-    private String status;
+    private String judul, penerbit, deskripsi, kondisi, status;
     private long kode;
     private int jumlahBuku = 0;
     private Barang[] booklist;
