@@ -15,7 +15,40 @@ public class Anggota extends Orang {
     private Anggota[] daftarAnggota;
     boolean c; // check
     int d;
+    private String fakultas;
+    private String jurusan;
 
+    public Anggota(){};
+    public Anggota(Peminjaman[] peminjaman, String username, String password, int jumlahAnggota, String nama, String kelamin, String alamat, String fakultas, String jurusan, Anggota[] anggota) {
+        this.peminjaman = peminjaman;
+        this.username = username;
+        this.password = password;
+        this.jumlahAnggota = jumlahAnggota;
+        this.nama = nama;
+        this.kelamin = kelamin;
+        this.alamat = alamat;
+        this.fakultas = fakultas;
+        this.jurusan = jurusan;
+        this.anggota = anggota;
+    }
+
+    public String getFakultas() {
+        return fakultas;
+    }
+
+    public void setFakultas(String fakultas) {
+        this.fakultas = fakultas;
+    }
+
+    public String getJurusan() {
+        return jurusan;
+    }
+
+    public void setJurusan(String jurusan) {
+        this.jurusan = jurusan;
+    }
+    
+    
     @Override
     public String getNama() {
         return nama;
@@ -113,6 +146,16 @@ public class Anggota extends Orang {
             }
         }
     }
+    
+    @Override
+    public String toString(){
+        String x = "Username = " + this.getUsername() +
+                   "\nPassword = " + this.getPassword() +
+                   "\nJumlah Anggota = " + this.getJumlahAnggota() +
+                   "\nAnggota = " + this.getAnggota();
+               
+        return x;
+    }  
     
     public void deleteAnggota(String username){
         if (c ==true){

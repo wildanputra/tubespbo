@@ -16,10 +16,6 @@ public class Peminjaman {
     public Barang brg;
     private String statusPeminjaman;
     private int jumlahPeminjaman = 0;
-
-    Peminjaman() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     public Peminjaman getPlist(int i) {
        return Plist[i];
@@ -63,6 +59,15 @@ public class Peminjaman {
         this.brg = brg;
         this.statusPeminjaman=statusPeminjaman;
         this.jumlahPeminjaman=jumlahPeminjaman;
+    }
+    
+    public String toString(){
+        String x = "Status Peminjaman = " + this.getstatusPeminjaman() +
+                   "\nID Peminjam = " + this.getidPeminjam() +
+                   "\nJumlah Peminjaman = " + this.getjumlahPeminjaman() +
+                   "\nStatus = " + this.getstatusPeminjaman();
+               
+        return x;
     }
 
     Peminjaman pinjam = new Peminjaman(12345, brg, 1);
