@@ -9,7 +9,7 @@ public class Aplikasi {
     Anggota[] daftarAnggota = new Anggota[100];
     Barang[] daftarBarang = new Barang[200];
     
-    Petugas a = new Petugas();
+    Petugas a ;
     Anggota b = new Anggota();
     boolean c; // check
     int d;

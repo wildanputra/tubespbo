@@ -10,13 +10,18 @@ package test;
  * @author wildanputra
  */
 public class Barang {
-    private String judul;
-    private String penerbit;
-    private String kondisi;
-    private String status;
+    private String judul, penerbit, kondisi, status;;
     private long kode;
     private int jumlahBuku = 0;
     private Barang[] booklist;
+
+    public String getJudul() {
+        return judul;
+    }
+
+    public void setJudul(String judul) {
+        this.judul = judul;
+    }
 
     public String getPenerbit() {
         return penerbit;
@@ -24,18 +29,6 @@ public class Barang {
 
     public void setPenerbit(String penerbit) {
         this.penerbit = penerbit;
-    }
-    
-    public Barang getBooklist(int i) {
-        return booklist[i];
-    }
-    
-    public String getJudul() {
-        return judul;
-    }
-
-    public void setJudul(String judul) {
-        this.judul = judul;
     }
 
     public String getKondisi() {
@@ -70,11 +63,12 @@ public class Barang {
         this.jumlahBuku = jumlahBuku;
     }
 
-    public Barang(String judul, String kondisi, String status,long kode){
+    public Barang(String judul,String penerbit String kondisi, String status,long kode){
         this.judul = judul;
         this.kondisi=kondisi;
         this.status=status;
         this.kode=kode;
+        this.penerbit = penerbit;
     } 
     
     public void setbooklist(int n){ //menentukan jumlah buku dalam array
