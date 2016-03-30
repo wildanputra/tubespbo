@@ -15,6 +15,14 @@ public class Barang {
     private int jumlahBuku = 0;
     private Barang[] booklist;
 
+    public String getJudul() {
+        return judul;
+    }
+
+    public void setJudul(String judul) {
+        this.judul = judul;
+    }
+
     public String getDeskripsi() {
         return deskripsi;
     }
@@ -75,11 +83,13 @@ public class Barang {
         this.jumlahBuku = jumlahBuku;
     }
 
-    public Barang(String judul, String kondisi, String status,long kode){
+    public Barang(String judul,String penerbit, String deskripsi, String kondisi, String status,long kode){
         this.judul = judul;
         this.kondisi=kondisi;
         this.status=status;
         this.kode=kode;
+        this.penerbit= penerbit;
+        this.deskripsi = deskripsi;
     } 
     
     public void setbooklist(int n){ //menentukan jumlah buku dalam array

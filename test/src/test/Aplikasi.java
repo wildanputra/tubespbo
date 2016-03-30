@@ -1,11 +1,32 @@
 package test;
 
+import java.util.*;
+
 /**
  *
  * @author OkaAryanata
  */
 public class Aplikasi {
-    Petugas[] daftarPetugas = new Petugas[20];
+    
+    private Scanner s;
+    private Barang barang;
+    private Anggota anggota;
+    private Peminjaman peminjaman;
+    private Petugas petugas;
+    private Barang[] daftarBarang;
+    private Anggota[] daftarAnggota;
+    private Peminjaman[] daftarPeminjaman;
+    private Petugas[] daftarPetugas;
+    
+    public Aplikasi(){
+        this.barang = new Barang();
+        this.anggota= new Anggota();
+        this.peminjaman = new Peminjaman();
+        this.petugas = new Petugas();
+        
+    }
+}
+    /*Petugas[] daftarPetugas = new Petugas[20];
     Anggota[] daftarAnggota = new Anggota[100];
     Barang[] daftarBarang = new Barang[200];
     
@@ -76,7 +97,7 @@ public class Aplikasi {
             d++;
             }while(d!=daftarAnggota.length);
         }
-    }
+    }*/
     
     
     

@@ -4,11 +4,44 @@ package test;
  *
  * @author wildanputra
  */
-public class Anggota {
+public class Anggota extends Orang {
     private Peminjaman[] peminjaman;
     private String username;
     private String password;
     private int jumlahAnggota;
+    private String nama;
+    private String kelamin;
+    private String alamat;
+
+    @Override
+    public String getNama() {
+        return nama;
+    }
+
+    @Override
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    @Override
+    public String getKelamin() {
+        return kelamin;
+    }
+
+    @Override
+    public void setKelamin(String kelamin) {
+        this.kelamin = kelamin;
+    }
+
+    @Override
+    public String getAlamat() {
+        return alamat;
+    }
+
+    @Override
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
     private Anggota[] anggota;
 
     public String getUsername() {
