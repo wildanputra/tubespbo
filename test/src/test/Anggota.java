@@ -127,7 +127,7 @@ public class Anggota extends Orang {
         }
         else System.out.println("Anggota sudah penuh");
     }
-    
+
     public void getAnggota(String username){
         for(int j=0; j<=getJumlahAnggota();j++){
             if(daftarAnggota[j]!=null){
@@ -147,16 +147,6 @@ public class Anggota extends Orang {
         }
     }
     
-    @Override
-    public String toString(){
-        String x = "Username = " + this.getUsername() +
-                   "\nPassword = " + this.getPassword() +
-                   "\nJumlah Anggota = " + this.getJumlahAnggota() +
-                   "\nAnggota = " + this.getAnggota();
-               
-        return x;
-    }  
-    
     public void deleteAnggota(String username){
         if (c ==true){
             do{
@@ -164,5 +154,20 @@ public class Anggota extends Orang {
             d++;
             }while(d!=daftarAnggota.length);
         }
+    }
+    
+    @Override
+    public String toString(){
+        String x = "Username = " + this.getUsername() +
+                   "\nPassword = " + this.getPassword() +
+                   "\nJumlah Anggota = " + this.getJumlahAnggota() +
+                   "\nNama = " + this.getNama() +
+                   "\nKelamin = " + this.getKelamin() +
+                   "\nAlamat = " + this.getAlamat() +
+                   "\nFakultas = " + this.getFakultas() +
+                   "\nJurusan = " + this.getJurusan() +
+                   "\nAnggota = " + this.getAnggota();
+               
+        return x;
     }
 }
