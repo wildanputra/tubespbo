@@ -11,12 +11,21 @@ package test;
  */
 public class Barang {
     private String judul;
+    private String penerbit;
     private String kondisi;
     private String status;
     private long kode;
     private int jumlahBuku = 0;
     private Barang[] booklist;
 
+    public String getPenerbit() {
+        return penerbit;
+    }
+
+    public void setPenerbit(String penerbit) {
+        this.penerbit = penerbit;
+    }
+    
     public Barang getBooklist(int i) {
         return booklist[i];
     }
