@@ -388,7 +388,7 @@ public class AplikasiPerpus {
                     pil = s.nextInt();
                     switch(pil){
                                 case 1:
-                                this.menuLihatPinjam();
+                                this.menuLihatPinjamA();
                                 case 2:
                                 this.menuUbahPassA();
                                 case 3:
@@ -431,16 +431,20 @@ public class AplikasiPerpus {
         System.out.println("");
     }
     
-    public void menuLihatPinjam(){ //msdih kurang
+    public void menuLihatPinjamA(){ //msdih kurang
         Scanner sc = new Scanner(System.in);
         this.s = sc;
         this.anggota.getAnggota(tmpUser);
         System.out.println("Daftar peminjman");
-        if(this.anggota.d!=999){
-            for(int i=0; i<2;i++){
-                System.out.println(i+1 +". " +
-                        this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i));
-            }
+        for(int i=0; i<this.anggota.getDaftarAnggota(this.anggota.d).getJumlahPeminjaman();i++){
+            if(this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i)!=null){
+                System.out.println(this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i).toString());
+                System.out.println("");
+                String bla = s.next();
+                this.menuAnggota();
+            } else System.out.println("daftar peminjaman kosong");
+              String bla = s.next();
+              this.menuAnggota();
         }
     }
         
@@ -604,7 +608,7 @@ public class AplikasiPerpus {
             System.out.println("3. Kembali");
             int pil = s.nextInt();
             if(pil==1){
-                this.menuLihatPinjam();
+                this.menuLihatPinjamP();
             } else if(pil == 2){
                 this.menuInputPinjam();
             } else if(pil == 3){
@@ -616,6 +620,23 @@ public class AplikasiPerpus {
         }
     }
     
+    public void menuLihatPinjamP(){
+        Scanner sc = new Scanner(System.in);
+        this.s = sc;
+        System.out.println("Daftar peminjaman");
+        for(int i=0;i<this.anggota.getDaftarAnggota(this.anggota.d).getJumlahPeminjaman();i++){
+            if(this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i)!=null){
+                System.out.println(this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i).toString());
+                String bla = s.next();
+                this.menuPetugas();
+            } else {
+                System.out.println("daftar peminjaman kosong");
+                String bla = s.next();
+                this.menuPetugas();
+            }
+        }
+    }
+    
     public void menuInputPinjam(){
         Scanner sc = new Scanner(System.in);
         this.s = sc;
@@ -623,9 +644,54 @@ public class AplikasiPerpus {
         long kode = s.nextInt();
         this.barang.getBookKode(kode);
         if(this.barang.getIdxBuku()!=999){
-            this.anggota.getDaftarAnggota(this.anggota.d).
+            System.out.println("id pinjam = ");
+            long idPeminjaman= s.nextInt();
+            System.out.println("tgl pinjam : ");
+            int tglPinjam = s.nextInt();
+            System.out.println("bln pinjam : ");
+            int blnPinjam = s.nextInt();
+            System.out.println("thn pinjam : ");
+            int thnPinjam = s.nextInt();
+            
+            Peminjaman p = new Peminjaman(idPeminjaman, this.barang.getBooklist(this.barang.getIdxBuku()), tglPinjam, blnPinjam, thnPinjam);
+            this.anggota.getDaftarAnggota(this.anggota.d).addPeminjaman(p);
+            System.out.println("SUKSES");
+            menuPetugas();
         }
-        
-                this.barang.idxBuku
+    }
+    
+    public void menuKembali(){
+        Scanner sc = new Scanner(System.in);
+        this.s = sc;
+        System.out.println("Id peminjaman : ");
+        long idPeminjaman = s.nextInt();
+        System.out.println("NIM : ");
+        String nim = s.next();
+        this.anggota.getAnggotaNim(nim);
+        for(int i=0; i<this.anggota.getJumlahPeminjaman();i++){
+            if(this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i).getIdPeminjam()==idPeminjaman){
+                System.out.println("tgl kembali : ");
+                int tglKembali = s.nextInt();
+                System.out.println("bln kembali : ");
+                int blnKembali = s.nextInt();
+                System.out.println("thn kembali : ");
+                int thnKembali = s.nextInt();
+                this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i).setTglKembali(tglKembali);
+                this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i).setBlnKembali(blnKembali);
+                this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i).setThnKembali(thnKembali);
+                
+                int thnPinjam = this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i).getThnPinjam();
+                int blnPinjam = this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i).getBlnPinjam();
+                int tglPinjam = this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i).getTglPinjam();
+                
+                int thn = thnKembali - thnPinjam;
+                int bln = blnKembali - blnPinjam;
+                int tgl = tglKembali - tglPinjam;
+                
+                
+                deletePinjam();
+                menuPetugas();
+            }
+        }
     }
 }
