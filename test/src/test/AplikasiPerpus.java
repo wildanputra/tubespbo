@@ -16,6 +16,8 @@ public class AplikasiPerpus {
     private Barang barang;
     private Anggota anggota;
     private Petugas petugas;
+    private String tmpUser;
+    private int cekAnggotaApp;
     
     public AplikasiPerpus(){
         this.barang = new Barang();
@@ -23,27 +25,21 @@ public class AplikasiPerpus {
         this.petugas = new Petugas();
         Petugas p1 = new Petugas("okaaryanata", "okaaryanata", "1301140220", "okaaryanata", "bali", "laki-laki");
         Petugas p2 = new Petugas("wildanputra", "wildanputra", "1301140210", "wildanputra", "bandung", "laki-laki");
-        Petugas p3 = new Petugas("ariananggada", "ariananggada", "1301140400", "ariananggada", "bali", "laki-laki");
+        Petugas p3 = new Petugas("ariananggada", "ariananggada", "1301140400", "ariananggada", "bandung", "laki-laki");
         Barang b1 = new Barang("PBO", "robert", "Hilang satu halaman", "tersedia", 121);
         Barang b2 = new Barang("COA", "minus", "Hilang dua halaman", "tersedia", 122);
         Barang b3 = new Barang("RPL", "marcel", "Hilang satu halaman", "tersedia", 123);
         this.barang.setBooklist(new Barang[200]);
         this.anggota.setDaftarAnggota(new Anggota[200]);
         this.petugas.setDaftarPetugas(new Petugas[50]);
+        this.anggota.setPeminjaman(new Peminjaman[2]);
+        //this.anggota.setPeminjaman(new Peminjaman[2]);
         this.barang.addBook(b1);
         this.barang.addBook(b2);
         this.barang.addBook(b3);
         this.petugas.addPetugas(p1);
         this.petugas.addPetugas(p2);
         this.petugas.addPetugas(p3);
-        /*System.out.println(barang.getBooklist(0).toString());
-        System.out.println("====================");
-        System.out.println(petugas.getDaftarPetugas(0).toString());
-        System.out.println("====================");
-        //System.out.println(anggota.getDaftarAnggota(2).toString());
-        
-        System.out.println("hello");
-        //System.out.println(anggota.toString()); */
     }
     
     public void menuAwal(){
@@ -123,7 +119,6 @@ public class AplikasiPerpus {
         Anggota a = new Anggota(username, password, nim, nama, kelamin, alamat, fakultas, jurusan);
         this.anggota.addAnggota(a);
         System.out.println("Sukses");
-        this.menuLogin();
         //System.out.println(anggota.getDaftarAnggota(0).toString());
         
     }
@@ -149,9 +144,9 @@ public class AplikasiPerpus {
         Petugas p = new Petugas(username, password, nip, nama, alamat, kelamin);
         this.petugas.addPetugas(p);
         System.out.println("Sukses");
-        this.menuLogin();
         //System.out.println(petugas.getDaftarPetugas(3).toString());
     }
+    
     public void menuLogin(){
         Scanner sc = new Scanner(System.in);
         this.s = sc;
@@ -182,6 +177,7 @@ public class AplikasiPerpus {
         System.out.println("Login Petugas");
         System.out.print("Masukkan Username : ");
         String username = s.next();
+        tmpUser = username;
         System.out.print("Masukkan Password : ");
         String password = s.next();
  
@@ -213,6 +209,7 @@ public class AplikasiPerpus {
         System.out.println("Login Petugas");
         System.out.print("Masukkan Username : ");
         String username = s.next();
+        tmpUser = username;
         System.out.print("Masukkan Password : ");
         String password = s.next();
  
@@ -239,22 +236,24 @@ public class AplikasiPerpus {
     
     public void menuPetugas(){
         Scanner sc = new Scanner(System.in);
+        this.s = sc;
         int pil = 0;
         do{
             try{
                     System.out.println("Menu Petugas");
-                    System.out.println("1. Anggota");
+                    System.out.println("1. Pendaftaran");
                     System.out.println("2. Peminjaman Buku");
                     System.out.println("3. Pengembalian Buku");
                     System.out.println("4. Pengadaan Buku");
                     System.out.println("5. Lihat Buku");
                     System.out.println("6. Ubah Password");
-                    System.out.println("7. Logout");
+                    System.out.println("7. Cek Anggota");
+                    System.out.println("8. Logout");
                     System.out.println("Pilihan : ");
                     pil = s.nextInt();
                     switch(pil){
                                 case 1:
-                                this.menuAU();
+                                this.menuPendaftaran();
                                 case 2:
                                 this.menuPinjam();
                                 case 3:
@@ -263,9 +262,16 @@ public class AplikasiPerpus {
                                 this.menuPengadaan();
                                 case 5:
                                 this.menuLihatBuku();
+                                System.out.println("masukan apapun untuk kembali");
+                                String pilih = s.next();
+                                if(pilih!=null){
+                                    this.menuAnggota();
+                                }
                                 case 6:
                                 this.menuUbahPassP();
                                 case 7:
+                                this.menuCekAnggota();
+                                case 8:
                                 System.out.println("Terima kasih");
                                 System.exit(0);
                                 default:
@@ -277,11 +283,98 @@ public class AplikasiPerpus {
                     Scanner scan = new Scanner(System.in);
                     this.s = scan;
                 }
-        }while(pil!=7);
+        }while(pil!=8);
+    }
+    
+    public void menuPengadaan(){
+        Scanner sc = new Scanner(System.in);
+        this.s = sc;
+        System.out.println();
+        System.out.println("Pengadaan Buku");
+        System.out.print("Judul : ");
+        String judul = s.next();
+        System.out.print("Penerbit : ");
+        String penerbit = s.next();
+        System.out.print("Kondisi   : ");
+        String kondisi = s.next();
+        System.out.print("kode  : ");
+        long kode = s.nextInt();
+        System.out.print("Status   : ");
+        String status = s.next();
+        
+        Barang b = new Barang(judul, penerbit, kondisi, status, kode);
+        this.barang.addBook(b);
+        System.out.println("Sukses");
+    }
+    
+    public void menuCekAnggota(){
+        Scanner sc = new Scanner(System.in);
+        this.s = sc;
+        int pil;
+        String cek;
+        System.out.println("1. username");
+        System.out.println("2. nim");
+        System.out.println("3. Kembali");
+        System.out.println("Pilihan : ");
+        pil = s.nextInt();
+        switch(pil){
+            case 1:
+                System.out.println("Username : ");
+                cek = s.next();
+                this.anggota.getAnggota(cek);
+                if(this.anggota.c==true){
+                    System.out.println("Anggota ditemukan");
+                    this.cekAnggotaApp =1;
+                    this.menuCekAnggota();
+                } else {
+                    this.cekAnggotaApp =0;
+                    this.menuCekAnggota();
+                }
+            case 2 :
+                System.out.println("NIM : ");
+                cek = s.next();
+                this.anggota.getAnggotaNim(cek);
+                if(this.anggota.c==true){
+                    System.out.println("Anggota ditemukan");
+                    this.cekAnggotaApp =1;
+                    this.menuCekAnggota();
+                } else {
+                    this.cekAnggotaApp =0;
+                    this.menuCekAnggota();
+                }
+            case 3 :
+                this.menuAnggota();
+            default:
+                System.out.println("Masukan salah");
+                this.menuCekAnggota();
+        }
+    }
+    
+    public void menuPendaftaran(){
+        Scanner sc = new Scanner(System.in);
+        this.s = sc;
+        int pil;
+        System.out.println("1. Anggota");
+        System.out.println("2. Petugas");
+        System.out.println("3. Kembali");
+        System.out.println("Pilihan : ");
+        pil = s.nextInt();
+        switch(pil){
+            case 1 :
+                this.daftarAnggota();
+            case 2 :
+                this.daftarPetugas();
+            case 3 :
+                this.menuPetugas();
+            default:
+                System.out.println("masukan salah");
+                this.menuPendaftaran();
+        }
     }
     
     public void menuAnggota(){
         Scanner sc = new Scanner(System.in);
+        this.s = sc;
         int pil = 0;
         do{
             try{
@@ -295,13 +388,18 @@ public class AplikasiPerpus {
                     pil = s.nextInt();
                     switch(pil){
                                 case 1:
-                                this.menuLihatBuku();
+                                this.menuLihatPinjam();
                                 case 2:
                                 this.menuUbahPassA();
                                 case 3:
-                                this.menuCariBuku();
+                                this.menuCariBukuA();
                                 case 4:
                                 this.menuLihatBuku();
+                                System.out.println("masukan apapun untuk kembali");
+                                String pilih = s.next();
+                                if(pilih!=null){
+                                    this.menuAnggota();
+                                }
                                 case 5:
                                 System.out.println("Terima kasih");
                                 System.exit(0);
@@ -315,5 +413,219 @@ public class AplikasiPerpus {
                     this.s = scan;
                 }
         }while(pil!=5);
+    }
+    
+    public void menuLihatBuku(){
+        Scanner sc = new Scanner(System.in);
+        this.s = sc;
+        int pil ;
+        System.out.println("Daftar Buku");
+        for(int i=0;i<barang.getJumlahBuku();i++){
+        System.out.println(i+1+". "+barang.getBooklist(i).getJudul());
+        }
+        System.out.println("Masukan nmr buku : ");
+        pil = s.nextInt();
+        System.out.println("===============");
+        System.out.println("detail buku : ");
+        System.out.println(barang.getBooklist(pil-1).toString());
+        System.out.println("");
+    }
+    
+    public void menuLihatPinjam(){ //msdih kurang
+        Scanner sc = new Scanner(System.in);
+        this.s = sc;
+        this.anggota.getAnggota(tmpUser);
+        System.out.println("Daftar peminjman");
+        if(this.anggota.d!=999){
+            for(int i=0; i<2;i++){
+                System.out.println(i+1 +". " +
+                        this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i));
+            }
+        }
+    }
+        
+    public void menuUbahPassA(){
+        Scanner sc = new Scanner(System.in);
+        this.s = sc;
+        String tmpPass,tmpPass1;
+        int count=0;
+        do{
+            this.anggota.getAnggota(tmpUser);
+            System.out.println("Ubah Password");
+            System.out.println("");
+            System.out.println("password lama : ");
+            tmpPass = s.next();
+            if(tmpPass.equals(this.anggota.getDaftarAnggota(this.anggota.d).getPassword())){
+                System.out.println("Password baru : ");
+                tmpPass = s.next();
+                System.out.println("Ulang Password baru : ");
+                tmpPass1 = s.next();
+                if(tmpPass==tmpPass1){
+                    this.anggota.getDaftarAnggota(this.anggota.d).setPassword(tmpPass1);
+                    System.out.println("ganti password sukses !");
+                    this.menuAnggota();
+                } else{
+                    System.out.println("Password tidak sama");
+                    count++;
+                }
+            } else{
+                System.out.println("Password salah");
+                count++;
+            }
+        }while(count<3);
+        this.menuAnggota();
+    }
+    
+    public void menuCariBukuA(){
+        Scanner sc = new Scanner(System.in);
+        this.s = sc;
+        int pil;
+        String x;
+        String tmpJudul;
+        long tmpKode;
+        System.out.println("1. Judul");
+        System.out.println("2. Kode");
+        System.out.println("3. Kembali");
+        pil = s.nextInt();
+        switch(pil){
+            case 1:
+                System.out.println("Masukan judul : ");
+                tmpJudul = s.next();
+                this.barang.getBookJudul(tmpJudul);
+                if(this.barang.tmpCari==1){
+                    x = s.next();
+                    if(x!=null){
+                        this.menuCariBukuA();
+                    }  
+                }else{
+                    this.menuCariBukuA();
+                }
+            case 2:
+                System.out.println("Masukan kode : ");
+                tmpKode = s.nextInt();
+                this.barang.getBookKode(tmpKode);
+                if(this.barang.tmpCari==1){
+                    x = s.next();
+                    if(x!=null){
+                        this.menuCariBukuA();
+                    }  
+                }else{
+                    this.menuCariBukuA();
+                }
+            case 3:
+                this.menuAnggota();
+            default:
+                this.menuCariBukuA();              
+        }
+    }
+    
+    public void menuCariBukuP(){
+        Scanner sc = new Scanner(System.in);
+        this.s = sc;
+        int pil;
+        String x;
+        String tmpJudul;
+        long tmpKode;
+        System.out.println("1. Judul");
+        System.out.println("2. Kode");
+        System.out.println("3. Kembali");
+        pil = s.nextInt();
+        switch(pil){
+            case 1:
+                System.out.println("Masukan judul : ");
+                tmpJudul = s.next();
+                this.barang.getBookJudul(tmpJudul);
+                if(this.barang.tmpCari==1){
+                    x = s.next();
+                    if(x!=null){
+                        this.menuCariBukuP();
+                    }  
+                }else{
+                    this.menuCariBukuP();
+                }
+            case 2:
+                System.out.println("Masukan kode : ");
+                tmpKode = s.nextInt();
+                this.barang.getBookKode(tmpKode);
+                if(this.barang.tmpCari==1){
+                    x = s.next();
+                    if(x!=null){
+                        this.menuCariBukuP();
+                    }  
+                }else{
+                    this.menuCariBukuP();
+                }
+            case 3:
+                this.menuPetugas();
+            default:
+                this.menuCariBukuP();              
+        }
+    }
+    
+    public void menuUbahPassP(){
+        Scanner sc = new Scanner(System.in);
+        this.s = sc;
+        String tmpPass,tmpPass1;
+        int count=0;
+        do{
+            this.petugas.getPetugas(tmpUser);
+            System.out.println("Ubah Password");
+            System.out.println("");
+            System.out.println("password lama : ");
+            tmpPass = s.next();
+            if(tmpPass.equals(this.petugas.getDaftarPetugas(this.petugas.d).getPassword())){
+                System.out.println("Password baru : ");
+                tmpPass = s.next();
+                System.out.println("Ulang Password baru : ");
+                tmpPass1 = s.next();
+                if(tmpPass==tmpPass1){
+                    this.anggota.getDaftarAnggota(this.anggota.d).setPassword(tmpPass1);
+                    System.out.println("ganti password sukses !");
+                    this.menuAnggota();
+                } else{
+                    System.out.println("Password tidak sama");
+                    count++;
+                }
+            } else{
+                System.out.println("Password salah");
+                count++;
+            }
+        }while(count<3);
+        this.menuPetugas();
+    }
+    
+    public void menuPinjam(){
+        Scanner sc = new Scanner(System.in);
+        this.s = sc;
+        this.menuCekAnggota();
+        if(this.cekAnggotaApp==1){
+            System.out.println("1. view peminjaman");
+            System.out.println("2. input peminjaman");
+            System.out.println("3. Kembali");
+            int pil = s.nextInt();
+            if(pil==1){
+                this.menuLihatPinjam();
+            } else if(pil == 2){
+                this.menuInputPinjam();
+            } else if(pil == 3){
+                this.menuPetugas();
+            } else{
+                System.out.println("masukan salah");
+                this.menuPinjam();
+            }
+        }
+    }
+    
+    public void menuInputPinjam(){
+        Scanner sc = new Scanner(System.in);
+        this.s = sc;
+        System.out.println("kode buku : ");
+        long kode = s.nextInt();
+        this.barang.getBookKode(kode);
+        if(this.barang.getIdxBuku()!=999){
+            this.anggota.getDaftarAnggota(this.anggota.d).
+        }
+        
+                this.barang.idxBuku
     }
 }
