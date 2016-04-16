@@ -18,6 +18,7 @@ public class AplikasiPerpus {
     private Petugas petugas;
     private String tmpUser;
     private int cekAnggotaApp;
+    int tmpTgl,tmpBln,tmpThn, tmpAkhir1, tmpAkhir2;
     
     public AplikasiPerpus(){
         this.barang = new Barang();
@@ -119,6 +120,8 @@ public class AplikasiPerpus {
         Anggota a = new Anggota(username, password, nim, nama, kelamin, alamat, fakultas, jurusan);
         this.anggota.addAnggota(a);
         System.out.println("Sukses");
+        System.out.println("");
+        this.menuPetugas();
         //System.out.println(anggota.getDaftarAnggota(0).toString());
         
     }
@@ -144,7 +147,9 @@ public class AplikasiPerpus {
         Petugas p = new Petugas(username, password, nip, nama, alamat, kelamin);
         this.petugas.addPetugas(p);
         System.out.println("Sukses");
-        //System.out.println(petugas.getDaftarPetugas(3).toString());
+        System.out.println("");
+        this.menuPetugas();
+//System.out.println(petugas.getDaftarPetugas(3).toString());
     }
     
     public void menuLogin(){
@@ -496,7 +501,7 @@ public class AplikasiPerpus {
                 System.out.println("Masukan judul : ");
                 tmpJudul = s.next();
                 this.barang.getBookJudul(tmpJudul);
-                if(this.barang.tmpCari==1){
+                if(this.barang.getTmpCari()==1){
                     x = s.next();
                     if(x!=null){
                         this.menuCariBukuA();
@@ -508,7 +513,7 @@ public class AplikasiPerpus {
                 System.out.println("Masukan kode : ");
                 tmpKode = s.nextInt();
                 this.barang.getBookKode(tmpKode);
-                if(this.barang.tmpCari==1){
+                if(this.barang.getTmpCari()==1){
                     x = s.next();
                     if(x!=null){
                         this.menuCariBukuA();
@@ -539,7 +544,7 @@ public class AplikasiPerpus {
                 System.out.println("Masukan judul : ");
                 tmpJudul = s.next();
                 this.barang.getBookJudul(tmpJudul);
-                if(this.barang.tmpCari==1){
+                if(this.barang.getTmpCari()==1){
                     x = s.next();
                     if(x!=null){
                         this.menuCariBukuP();
@@ -551,7 +556,7 @@ public class AplikasiPerpus {
                 System.out.println("Masukan kode : ");
                 tmpKode = s.nextInt();
                 this.barang.getBookKode(tmpKode);
-                if(this.barang.tmpCari==1){
+                if(this.barang.getTmpCari()==1){
                     x = s.next();
                     if(x!=null){
                         this.menuCariBukuP();
@@ -663,6 +668,7 @@ public class AplikasiPerpus {
     public void menuKembali(){
         Scanner sc = new Scanner(System.in);
         this.s = sc;
+        int denda;
         System.out.println("Id peminjaman : ");
         long idPeminjaman = s.nextInt();
         System.out.println("NIM : ");
@@ -684,14 +690,109 @@ public class AplikasiPerpus {
                 int blnPinjam = this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i).getBlnPinjam();
                 int tglPinjam = this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i).getTglPinjam();
                 
+                /*hitDate(tglPinjam, , i)
+                
+                
                 int thn = thnKembali - thnPinjam;
                 int bln = blnKembali - blnPinjam;
                 int tgl = tglKembali - tglPinjam;
                 
                 
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                if(thn==0 && bln==0 && tgl<=7){
+                    denda = 0;
+                    this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i).setDenda(denda);
+                } else if(thn==0 && bln==0 && 7<tgl && tgl<=49){
+                    denda = tgl * 1000;
+                    this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i).setDenda(denda);
+                }else if(thn==0 && bln==0 && tgl>49){
+                    denda = 50000;
+                    this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i).setDenda(denda);
+                }else if(thn==0 && bln==0 && tgl>49){ 
+                
                 deletePinjam();
-                menuPetugas();
+                menuPetugas();*/
+                
+                
+                }
             }
         }
     }
-}
+    
+    /*public int hitDate(int tgl, int bln, int thn ){
+        
+        if(thn % 4 == 0){
+            switch(bln){
+            case 1 :
+                tmpTgl = 31;
+            case 2 :
+                tmpTgl = 29;
+            case 3 :
+                tmpTgl = 31;
+            case 4 :
+                tmpTgl = 30;
+            case 5 :
+                tmpTgl = 31;
+            case 6 :
+                tmpTgl = 30;
+            case 7 :
+                tmpTgl = 31;
+            case 8 :
+                tmpTgl = 31;
+            case 9 :
+                tmpTgl = 30;
+            case 10 :
+                tmpTgl = 31;
+            case 11 :
+                tmpTgl = 30;
+            case 12 :
+                tmpTgl = 31;
+            }
+        } else{ 
+            switch(bln){
+                case 1 :
+                    tmpTgl = 31;
+                case 2 :
+                    tmpTgl = 28;
+                case 3 :
+                    tmpTgl = 31;
+                case 4 :
+                    tmpTgl = 30;
+                case 5 :
+                    tmpTgl = 31;
+                case 6 :
+                    tmpTgl = 30;
+                case 7 :
+                    tmpTgl = 31;
+                case 8 :
+                    tmpTgl = 31;
+                case 9 :
+                    tmpTgl = 30;
+                case 10 :
+                    tmpTgl = 31;
+                case 11 :
+                    tmpTgl = 30;
+                case 12 :
+                    tmpTgl = 31;
+            }
+        }
+        tmpAkhir1 = tmpTgl-tgl;
+        for(int i=1; i<bln; i++){
+            tmpAkhir2 = tmpTgl + tmpAkhir2;
+        }
+        return tmpAkhir1;
+    }*/
+
+    
+
