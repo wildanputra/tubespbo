@@ -11,11 +11,12 @@ package test;
  */
 public class Test {
 
-    /**
+    /**1
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        AplikasiPerpus p = new AplikasiPerpus();
+        p.menuAwal();
     }
     
 }
