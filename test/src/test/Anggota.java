@@ -8,17 +8,31 @@ public class Anggota extends Orang {
     private Peminjaman[] peminjaman;
     private String username;
     private String password;
+    private String nim;
     private int jumlahAnggota;
     private String nama;
     private String kelamin;
     private String alamat;
     private Anggota[] daftarAnggota;
-    boolean c; // check
-    int d;
+    boolean c = false; // check
+    int d=999;
     private String fakultas;
     private String jurusan;
+    private int jumlahPeminjaman;
 
     public Anggota(){};
+
+    public Anggota(String username, String password, String nim, String nama, String kelamin, String alamat, String fakultas, String jurusan) {
+        this.username = username;
+        this.password = password;
+        this.nim = nim;
+        this.nama = nama;
+        this.kelamin = kelamin;
+        this.alamat = alamat;
+        this.fakultas = fakultas;
+        this.jurusan = jurusan;
+    }
+    
     public Anggota(Peminjaman[] peminjaman, String username, String password, int jumlahAnggota, String nama, String kelamin, String alamat, String fakultas, String jurusan, Anggota[] anggota) {
         this.peminjaman = peminjaman;
         this.username = username;
@@ -30,6 +44,23 @@ public class Anggota extends Orang {
         this.fakultas = fakultas;
         this.jurusan = jurusan;
         this.anggota = anggota;
+    }
+
+    public int getJumlahPeminjaman() {
+        return jumlahPeminjaman;
+    }
+
+    public void setJumlahPeminjaman(int jumlahPeminjaman) {
+        this.jumlahPeminjaman = jumlahPeminjaman;
+    }
+
+    
+    public Peminjaman getPeminjaman(int x) {
+        return peminjaman[x];
+    }
+
+    public void setPeminjaman(Peminjaman[] peminjaman) {
+        this.peminjaman = peminjaman;
     }
 
     public String getFakultas() {
@@ -47,6 +78,15 @@ public class Anggota extends Orang {
     public void setJurusan(String jurusan) {
         this.jurusan = jurusan;
     }
+
+    public String getNim() {
+        return nim;
+    }
+
+    public void setNim(String nim) {
+        this.nim = nim;
+    }
+    
     
     
     @Override
@@ -112,8 +152,8 @@ public class Anggota extends Orang {
         this.anggota = anggota;
     }
 
-    public Anggota[] getDaftarAnggota() {
-        return daftarAnggota;
+    public Anggota getDaftarAnggota(int x) {
+        return daftarAnggota[x];
     }
 
     public void setDaftarAnggota(Anggota[] daftarAnggota) {
@@ -147,6 +187,25 @@ public class Anggota extends Orang {
         }
     }
     
+    public void getAnggotaNim(String nim){
+        for(int j=0; j<=getJumlahAnggota();j++){
+            if(daftarAnggota[j]!=null){
+                if(daftarAnggota[j].getNim()==nim){
+                    c = true;
+                    d=j;
+                }
+                else { 
+                    System.out.println("Anggota tidak ditemukan");
+                    c = false;
+                }
+            }
+            else {
+                System.out.println("Daftar Anggota Kosong");
+                c = false;
+            }
+        }
+    }
+    
     public void deleteAnggota(String username){
         if (c ==true){
             do{
@@ -156,17 +215,24 @@ public class Anggota extends Orang {
         }
     }
     
+    public void addPeminjaman(Peminjaman b){
+        if (getJumlahPeminjaman()<peminjaman.length){
+            peminjaman[getJumlahPeminjaman()] = b;
+            setJumlahPeminjaman(getJumlahPeminjaman()+1);
+        }
+        else System.out.println("pemijaman anda penuh");
+    }
+    
     @Override
     public String toString(){
         String x = "Username = " + this.getUsername() +
                    "\nPassword = " + this.getPassword() +
-                   "\nJumlah Anggota = " + this.getJumlahAnggota() +
                    "\nNama = " + this.getNama() +
+                   "\nNIM = " + this.getNim() +
                    "\nKelamin = " + this.getKelamin() +
                    "\nAlamat = " + this.getAlamat() +
                    "\nFakultas = " + this.getFakultas() +
-                   "\nJurusan = " + this.getJurusan() +
-                   "\nAnggota = " + this.getAnggota();
+                   "\nJurusan = " + this.getJurusan();
                
         return x;
     }
