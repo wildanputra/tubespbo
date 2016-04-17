@@ -115,21 +115,14 @@ public class Petugas extends Orang{
     
     public void getPetugas(String username){
         for(int j=0; j<getJumlahPetugas();j++){
-            if(daftarPetugas[j]!=null){
-                if(daftarPetugas[j].getUsername()==username){
+                if(getDaftarPetugas(j).getUsername().equals(username)){
                     c = true;
                     d=j;
                 }
-                else { 
-                    System.out.println("Petugas tidak ditemukan");
-                    c = false;
-                }
-            }
-            else {
-                System.out.println("Daftar Petugas Kosong");
-                c = false;
-            }
         }
+                if(c==false){
+                System.out.println("Petugas tidak ditemukan");
+                }
     }
     
     @Override
