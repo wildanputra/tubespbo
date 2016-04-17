@@ -146,7 +146,7 @@ public class Barang {
     
     public void getBookJudul(String judul){
         for(int j=0;j<jumlahBuku;j++) {
-            if(getBooklist(j).getJudul()== judul){
+            if(getBooklist(j).getJudul().equals(judul)){
                 idxBuku = j;
                 System.out.println(getBooklist(j).toString());
                 tmpCari=1;
