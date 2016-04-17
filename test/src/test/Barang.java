@@ -5,6 +5,8 @@
  */
 package test;
 
+import java.util.*;
+
 /**
  *
  * @author wildanputra
@@ -14,13 +16,24 @@ public class Barang {
     private long kode;
     private int jumlahBuku = 0;
     private Barang[] booklist;
+    private int tmpCari = 0;
+    private int idxBuku=999;
 
+    public int getTmpCari() {
+        return tmpCari;
+    }
+
+    public void setTmpCari(int tmpCari) {
+        this.tmpCari = tmpCari;
+    }
+
+    
     public String getJudul() {
         return judul;
     }
 
-    public Barang[] getBooklist() {
-        return booklist;
+    public Barang getBooklist(int x) {
+        return booklist[x];
     }
 
     public void setBooklist(Barang[] booklist) {
@@ -46,9 +59,13 @@ public class Barang {
     public void setPenerbit(String penerbit) {
         this.penerbit = penerbit;
     }
-    
-    public Barang getBooklist(int i) {
-        return booklist[i];
+
+    public int getIdxBuku() {
+        return idxBuku;
+    }
+
+    public void setIdxBuku(int idxBuku) {
+        this.idxBuku = idxBuku;
     }
     
     public String getKondisi() {
@@ -90,70 +107,95 @@ public class Barang {
         this.status=status;
         this.kode=kode;
         this.penerbit= penerbit;
-        this.deskripsi = deskripsi;
     } 
-    
-    
-    
-   
     
     public void addBook(Barang b){
         if (jumlahBuku<booklist.length){
             booklist[jumlahBuku] = b;
             jumlahBuku++;
+            tmpCari=1;
         }
-        else System.out.println("Booklist full");       
+        else System.out.println("Booklist full");
+        tmpCari=0;
     }
     
-    public void getBookIdx(int i){
-        for(int j=0;j<=jumlahBuku;j++) {
+    public void getBookIdx(int j){
             if(booklist[j]!=null){
-                System.out.println("judul : "+booklist[j].getJudul());
-                System.out.println("kondisi : "+booklist[j].getKondisi());
-                System.out.println("Status : "+booklist[j].getKondisi());
-            }
-            else {
+                idxBuku = j;
+                System.out.println(getBooklist(j).toString());
+                tmpCari=1;
+            } 
+            if(tmpCari!=1){
                 System.out.println("Buku tidak ditemukan");
             }
-        } 
     }
     
     public void getBookKode(long i){
         for(int j=0;j<=jumlahBuku;j++) {
-            if(booklist[j].getKode() == i){
-                System.out.println("judul : "+booklist[j].getJudul());
-                System.out.println("kondisi : "+booklist[j].getKondisi());
-                System.out.println("Status : "+booklist[j].getKondisi());
-            }
-            else {
-                System.out.println("Buku tidak ditemukan");
-            }
-        } 
-    }   
-    
-    public void removeBookIdx(int i){//remove by index
-        for(int j=0;j<=jumlahBuku;j++) {
-            if(booklist[j]!=null){
-                booklist[j]=null;
-                System.out.println("Buku berhasil dihapus");
-            }
-            else {
-                System.out.println("Buku tidak ditemukan");
-            }
+            if(getBooklist(j).getKode()== i){
+            idxBuku = j;
+            System.out.println(getBooklist(j).toString());
+            tmpCari=1;
+            } 
         }
+            if(tmpCari!=1){
+                System.out.println("Buku tidak ditemukan");
+            }
+    } 
+       
+    
+    public void getBookJudul(String judul){
+        for(int j=0;j<jumlahBuku;j++) {
+            if(getBooklist(j).getJudul()== judul){
+                idxBuku = j;
+                System.out.println(getBooklist(j).toString());
+                tmpCari=1;
+            } 
+        }
+        if(tmpCari!=1){
+            System.out.println("Buku tidak ditemukan");
+        } 
     }
     
-    public void removeBookKode(long i){//remove book by kode
+    public void removeBookIdx(int j){//remove by index
+        int i;
+        if(booklist[j]!=null){
+            booklist[j]=null;
+            do{
+                i = j+1;
+                booklist[j]=booklist[i];
+                j = i;
+            } while(i!=jumlahBuku);
+                System.out.println("Buku berhasil dihapus");
+                tmpCari=1;
+            }
+            else {
+                System.out.println("Buku tidak ditemukan");
+                tmpCari=0;
+            }
+    }
+    
+    public void removeBookKode(long kode){//remove book by kode
+        int i;
         for(int j=0;j<=jumlahBuku;j++) {
-            if(booklist[j].getKode() == i){
+            if(booklist[j].getKode() == kode){
                 booklist[j]=null;
+                do{
+                i = j+1;
+                booklist[j]=booklist[i];
+                j = i;
+            } while(i!=jumlahBuku);
+                System.out.println("Buku berhasil dihapus");
+                tmpCari=1;
             }
             else{
                 System.out.println("Buku tidak ditemukan");
+                tmpCari=0;
             }
         }
     }
     
+    @Override
     public String toString(){
         String x = "Judul = " + this.getJudul() +
                    "\nPenerbit = " + this.getPenerbit() +
