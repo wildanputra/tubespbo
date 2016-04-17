@@ -184,8 +184,10 @@ public class Anggota extends Orang {
     public void getAnggotaNim(String nim){
         for(int j=0; j<=getJumlahAnggota();j++){
                 if(getDaftarAnggota(j).getNim().equals(nim)){
+                    //System.out.println("bla");
                     c = true;
                     d=j;
+                    
                 }
         }
                 if(c==false){
