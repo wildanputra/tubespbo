@@ -30,6 +30,7 @@ public class AplikasiPerpus {
         Barang b1 = new Barang("PBO", "robert", "Hilang satu halaman", "tersedia", 121);
         Barang b2 = new Barang("COA", "minus", "Hilang dua halaman", "tersedia", 122);
         Barang b3 = new Barang("RPL", "marcel", "Hilang satu halaman", "tersedia", 123);
+        Anggota a1 = new Anggota("robert", "robert", "123456", "robert", "laki", "balaendah", "FIF", "IF");
         this.barang.setBooklist(new Barang[200]);
         this.anggota.setDaftarAnggota(new Anggota[200]);
         this.petugas.setDaftarPetugas(new Petugas[50]);
@@ -41,6 +42,14 @@ public class AplikasiPerpus {
         this.petugas.addPetugas(p1);
         this.petugas.addPetugas(p2);
         this.petugas.addPetugas(p3);
+        this.anggota.addAnggota(a1);
+        System.out.println(this.anggota.getJumlahAnggota());
+        System.out.println(this.petugas.getJumlahPetugas());
+        System.out.println(this.barang.getJumlahBuku());
+        System.out.println(this.barang.getBooklist(0).getJudul());
+        System.out.println(this.barang.getBooklist(1).getJudul());
+        System.out.println(this.barang.getBooklist(2).getJudul());
+        System.out.println(this.barang.getBooklist(0).toString());
     }
     
     public void menuAwal(){
@@ -121,6 +130,7 @@ public class AplikasiPerpus {
         this.anggota.addAnggota(a);
         System.out.println("Sukses");
         System.out.println("");
+        System.out.println(this.anggota.getDaftarAnggota(0).toString());
         this.menuPetugas();
         //System.out.println(anggota.getDaftarAnggota(0).toString());
         
@@ -179,7 +189,7 @@ public class AplikasiPerpus {
         this.s = sc;
         String loop;
         System.out.println();
-        System.out.println("Login Petugas");
+        System.out.println("Login Anggota");
         System.out.print("Masukkan Username : ");
         String username = s.next();
         tmpUser = username;
@@ -196,7 +206,7 @@ public class AplikasiPerpus {
                     if(loop.equals("n")||loop.equals("N")){
                         this.menuLogin();
                     } else if(loop.equals("y")||loop.equals("Y")){
-                        this.logPetugas();
+                        this.logAnggota();
                     } else {
                         System.out.println("Masukan tidak tepat");
                         this.menuAwal();
@@ -270,7 +280,7 @@ public class AplikasiPerpus {
                                 System.out.println("masukan apapun untuk kembali");
                                 String pilih = s.next();
                                 if(pilih!=null){
-                                    this.menuAnggota();
+                                    this.menuPetugas();
                                 }
                                 case 6:
                                 this.menuUbahPassP();
@@ -278,7 +288,7 @@ public class AplikasiPerpus {
                                 this.menuCekAnggota();
                                 case 8:
                                 System.out.println("Terima kasih");
-                                System.exit(0);
+                                this.menuAwal();
                                 default:
                                 System.out.println("Input menu antara 1-7");
                             }
@@ -407,7 +417,7 @@ public class AplikasiPerpus {
                                 }
                                 case 5:
                                 System.out.println("Terima kasih");
-                                System.exit(0);
+                                this.menuAwal();
                                 default:
                                 System.out.println("Input menu antara 1-5");
                             }
@@ -501,14 +511,15 @@ public class AplikasiPerpus {
                 System.out.println("Masukan judul : ");
                 tmpJudul = s.next();
                 this.barang.getBookJudul(tmpJudul);
-                if(this.barang.getTmpCari()==1){
+                /*if(this.barang.getTmpCari()==1){
                     x = s.next();
                     if(x!=null){
                         this.menuCariBukuA();
                     }  
                 }else{
                     this.menuCariBukuA();
-                }
+                }*/
+                this.menuCariBukuA();
             case 2:
                 System.out.println("Masukan kode : ");
                 tmpKode = s.nextInt();
