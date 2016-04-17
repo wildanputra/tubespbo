@@ -17,11 +17,11 @@ public class Petugas {
     private Petugas[] p;
 
     public String getNIP() {
-        return NIP;
+        return nip;
     }
 
     public void setNIP(String NIP) {
-        this.NIP = NIP;
+        this.nip = nip;
     }
     
     public String getUsername() {
