@@ -27,9 +27,9 @@ public class AplikasiPerpus {
         Petugas p1 = new Petugas("okaaryanata", "okaaryanata", "1301140220", "okaaryanata", "bali", "laki-laki");
         Petugas p2 = new Petugas("wildanputra", "wildanputra", "1301140210", "wildanputra", "bandung", "laki-laki");
         Petugas p3 = new Petugas("ariananggada", "ariananggada", "1301140400", "ariananggada", "bandung", "laki-laki");
-        Barang b1 = new Barang("PBO", "robert", "Hilang satu halaman", "tersedia", 121);
-        Barang b2 = new Barang("COA", "minus", "Hilang dua halaman", "tersedia", 122);
-        Barang b3 = new Barang("RPL", "marcel", "Hilang satu halaman", "tersedia", 123);
+        Barang b1 = new Barang("PBO", "robert", "Hilang satu halaman", "tersedia",121);
+        Barang b2 = new Barang("COA", "minus", "Hilang dua halaman", "tersedia",122);
+        Barang b3 = new Barang("RPL", "marcel", "Hilang satu halaman", "tersedia",123);
         Anggota a1 = new Anggota("robert", "robert", "123456", "robert", "laki", "balaendah", "FIF", "IF");
         this.barang.setBooklist(new Barang[200]);
         this.anggota.setDaftarAnggota(new Anggota[200]);
@@ -50,6 +50,7 @@ public class AplikasiPerpus {
         System.out.println(this.barang.getBooklist(1).getJudul());
         System.out.println(this.barang.getBooklist(2).getJudul());
         System.out.println(this.barang.getBooklist(0).toString());
+        System.out.println(this.anggota.d);
     }
     
     public void menuAwal(){
@@ -199,6 +200,7 @@ public class AplikasiPerpus {
             for(int i=0;i<anggota.getJumlahAnggota(); i++){
                 if(anggota.getDaftarAnggota(i).getUsername().equals(username) && anggota.getDaftarAnggota(i).getPassword().equals(password)){
                     this.menuAnggota();
+                    //this.anggota.d=i;
                 } else {
                     System.out.println("Username atau password salah");
                     System.out.println("Coba Lagi ? [Y/N] : ");
@@ -264,7 +266,7 @@ public class AplikasiPerpus {
                     System.out.println("6. Ubah Password");
                     System.out.println("7. Cek Anggota");
                     System.out.println("8. Logout");
-                    System.out.println("Pilihan : ");
+                    System.out.print("Pilihan : ");
                     pil = s.nextInt();
                     switch(pil){
                                 case 1:
@@ -285,7 +287,7 @@ public class AplikasiPerpus {
                                 case 6:
                                 this.menuUbahPassP();
                                 case 7:
-                                this.menuCekAnggota();
+                                this.menuCekAnggota1();
                                 case 8:
                                 System.out.println("Terima kasih");
                                 this.menuAwal();
@@ -322,6 +324,11 @@ public class AplikasiPerpus {
         System.out.println("Sukses");
     }
     
+    public void menuCekAnggota1(){
+        this.menuCekAnggota();
+        this.menuCekAnggota1();
+    }
+    
     public void menuCekAnggota(){
         Scanner sc = new Scanner(System.in);
         this.s = sc;
@@ -336,14 +343,13 @@ public class AplikasiPerpus {
             case 1:
                 System.out.println("Username : ");
                 cek = s.next();
-                this.anggota.getAnggota(cek);
+                this.anggota.getAnggotaUser(cek);
                 if(this.anggota.c==true){
                     System.out.println("Anggota ditemukan");
                     this.cekAnggotaApp =1;
-                    this.menuCekAnggota();
                 } else {
                     this.cekAnggotaApp =0;
-                    this.menuCekAnggota();
+                    System.out.println("Anggota tidak ditemukan");
                 }
             case 2 :
                 System.out.println("NIM : ");
@@ -352,16 +358,14 @@ public class AplikasiPerpus {
                 if(this.anggota.c==true){
                     System.out.println("Anggota ditemukan");
                     this.cekAnggotaApp =1;
-                    this.menuCekAnggota();
                 } else {
                     this.cekAnggotaApp =0;
-                    this.menuCekAnggota();
+                    System.out.println("anggota tidak ditemukan");
                 }
             case 3 :
-                this.menuAnggota();
+                this.menuPetugas();
             default:
                 System.out.println("Masukan salah");
-                this.menuCekAnggota();
         }
     }
     
@@ -399,7 +403,7 @@ public class AplikasiPerpus {
                     System.out.println("3. Cari Buku");
                     System.out.println("4. Lihat Semua Buku");
                     System.out.println("5. Logout");
-                    System.out.println("Pilihan : ");
+                    System.out.print("Pilihan : ");
                     pil = s.nextInt();
                     switch(pil){
                                 case 1:
@@ -449,7 +453,7 @@ public class AplikasiPerpus {
     public void menuLihatPinjamA(){ //msdih kurang
         Scanner sc = new Scanner(System.in);
         this.s = sc;
-        this.anggota.getAnggota(tmpUser);
+        this.anggota.getAnggotaUser(tmpUser);
         System.out.println("Daftar peminjman");
         for(int i=0; i<this.anggota.getDaftarAnggota(this.anggota.d).getJumlahPeminjaman();i++){
             if(this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i)!=null){
@@ -457,10 +461,11 @@ public class AplikasiPerpus {
                 System.out.println("");
                 String bla = s.next();
                 this.menuAnggota();
-            } else System.out.println("daftar peminjaman kosong");
+            }
+        }
+            System.out.println("daftar peminjaman kosong");
               String bla = s.next();
               this.menuAnggota();
-        }
     }
         
     public void menuUbahPassA(){
@@ -469,17 +474,21 @@ public class AplikasiPerpus {
         String tmpPass,tmpPass1;
         int count=0;
         do{
-            this.anggota.getAnggota(tmpUser);
+            //System.out.println(this.anggota.d);
+            System.out.println(tmpUser);
+            this.anggota.getAnggotaUser(tmpUser);
+            //System.out.println(this.anggota.d);
+            this.anggota.getDaftarAnggota(this.anggota.d).getPassword();
             System.out.println("Ubah Password");
             System.out.println("");
-            System.out.println("password lama : ");
+            System.out.print("password lama : ");
             tmpPass = s.next();
             if(tmpPass.equals(this.anggota.getDaftarAnggota(this.anggota.d).getPassword())){
-                System.out.println("Password baru : ");
+                System.out.print("Password baru : ");
                 tmpPass = s.next();
-                System.out.println("Ulang Password baru : ");
+                System.out.print("Ulang Password baru : ");
                 tmpPass1 = s.next();
-                if(tmpPass==tmpPass1){
+                if(tmpPass.equals(tmpPass1)){
                     this.anggota.getDaftarAnggota(this.anggota.d).setPassword(tmpPass1);
                     System.out.println("ganti password sukses !");
                     this.menuAnggota();
@@ -585,17 +594,17 @@ public class AplikasiPerpus {
             this.petugas.getPetugas(tmpUser);
             System.out.println("Ubah Password");
             System.out.println("");
-            System.out.println("password lama : ");
+            System.out.print("password lama : ");
             tmpPass = s.next();
             if(tmpPass.equals(this.petugas.getDaftarPetugas(this.petugas.d).getPassword())){
-                System.out.println("Password baru : ");
+                System.out.print("Password baru : ");
                 tmpPass = s.next();
-                System.out.println("Ulang Password baru : ");
+                System.out.print("Ulang Password baru : ");
                 tmpPass1 = s.next();
-                if(tmpPass==tmpPass1){
-                    this.anggota.getDaftarAnggota(this.anggota.d).setPassword(tmpPass1);
+                if(tmpPass.equals(tmpPass1)){
+                    this.petugas.getDaftarPetugas(this.petugas.d).setPassword(tmpPass1);
                     System.out.println("ganti password sukses !");
-                    this.menuAnggota();
+                    this.menuPetugas();
                 } else{
                     System.out.println("Password tidak sama");
                     count++;
@@ -639,12 +648,11 @@ public class AplikasiPerpus {
                 System.out.println(this.anggota.getDaftarAnggota(this.anggota.d).getPeminjaman(i).toString());
                 String bla = s.next();
                 this.menuPetugas();
-            } else {
+            } 
+        }
                 System.out.println("daftar peminjaman kosong");
                 String bla = s.next();
                 this.menuPetugas();
-            }
-        }
     }
     
     public void menuInputPinjam(){
