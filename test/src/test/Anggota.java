@@ -168,42 +168,29 @@ public class Anggota extends Orang {
         else System.out.println("Anggota sudah penuh");
     }
 
-    public void getAnggota(String username){
-        for(int j=0; j<=getJumlahAnggota();j++){
-            if(daftarAnggota[j]!=null){
-                if(daftarAnggota[j].getUsername()==username){
+    public void getAnggotaUser(String username){
+        for(int j=0; j<getJumlahAnggota();j++){
+                if(getDaftarAnggota(j).getUsername().equals(username)){
                     c = true;
                     d=j;
                 }
-                else { 
-                    System.out.println("Anggota tidak ditemukan");
-                    c = false;
-                }
-            }
-            else {
-                System.out.println("Daftar Anggota Kosong");
-                c = false;
-            }
         }
+                if(c==false){ 
+                    System.out.println("Anggota tidak ditemukan");
+                }
     }
+           
     
     public void getAnggotaNim(String nim){
         for(int j=0; j<=getJumlahAnggota();j++){
-            if(daftarAnggota[j]!=null){
-                if(daftarAnggota[j].getNim()==nim){
+                if(getDaftarAnggota(j).getNim().equals(nim)){
                     c = true;
                     d=j;
                 }
-                else { 
-                    System.out.println("Anggota tidak ditemukan");
-                    c = false;
-                }
-            }
-            else {
-                System.out.println("Daftar Anggota Kosong");
-                c = false;
-            }
         }
+                if(c==false){
+                    System.out.println("Anggota tidak ditemukan");
+                }
     }
     
     public void deleteAnggota(String username){
