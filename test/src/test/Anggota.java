@@ -26,7 +26,7 @@ public class Anggota extends Orang {
         this.username = username;
         this.password = password;
         this.nim = nim;
-        this.nama = nama;
+        this.nama = nama; 
         this.kelamin = kelamin;
         this.alamat = alamat;
         this.fakultas = fakultas;
