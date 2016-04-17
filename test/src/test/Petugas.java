@@ -11,7 +11,6 @@ package test;
  */
 public class Petugas extends Orang{
     private String username;
-
     private String password;
     private String nip;
     private int jumlahPetugas;
@@ -32,8 +31,8 @@ public class Petugas extends Orang{
         this.username=username;
     }
     
-    public Petugas[] getDaftarPetugas() {
-        return daftarPetugas;
+    public Petugas getDaftarPetugas(int x) {
+        return daftarPetugas[x];
     }
 
     public void setDaftarPetugas(Petugas[] daftarPetugas) {
@@ -115,22 +114,26 @@ public class Petugas extends Orang{
     }
     
     public void getPetugas(String username){
-        for(int j=0; j<=getJumlahPetugas();j++){
-            if(daftarPetugas[j]!=null){
-                if(daftarPetugas[j].getUsername()==username){
+        for(int j=0; j<getJumlahPetugas();j++){
+                if(getDaftarPetugas(j).getUsername().equals(username)){
                     c = true;
                     d=j;
                 }
-                else { 
-                    System.out.println("Petugas tidak ditemukan");
-                    c = false;
-                }
-            }
-            else {
-                System.out.println("Daftar Petugas Kosong");
-                c = false;
-            }
         }
+                if(c==false){
+                System.out.println("Petugas tidak ditemukan");
+                }
     }
     
+    @Override
+    public String toString(){
+        String x = "Username = " + this.getUsername() +
+                   "\nPassword = " + this.getPassword() +
+                   "\nJumlah Petugas = " + this.getJumlahPetugas()+
+                   "\nNama = " + this.getNama() +
+                   "\nKelamin = " + this.getKelamin() +
+                   "\nAlamat = " + this.getAlamat() +
+                   "\nNIP = " + this.getNip();               
+        return x;
+    }        
 }
