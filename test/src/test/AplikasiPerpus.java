@@ -505,6 +505,7 @@ public class AplikasiPerpus {
         System.out.println("1. Judul");
         System.out.println("2. Kode");
         System.out.println("3. Kembali");
+        System.out.print("Pilihan : ");
         pil = s.nextInt();
         switch(pil){
             case 1:
@@ -524,14 +525,7 @@ public class AplikasiPerpus {
                 System.out.println("Masukan kode : ");
                 tmpKode = s.nextInt();
                 this.barang.getBookKode(tmpKode);
-                if(this.barang.getTmpCari()==1){
-                    x = s.next();
-                    if(x!=null){
-                        this.menuCariBukuA();
-                    }  
-                }else{
-                    this.menuCariBukuA();
-                }
+                this.menuCariBukuA();
             case 3:
                 this.menuAnggota();
             default:
